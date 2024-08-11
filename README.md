@@ -26,10 +26,12 @@ First, run the docker container for the database:
 docker compose up
 ```
 
-Next, set up Prisma with the next command:
+Next, set up Prisma with the following commands:
 
 ```bash
 npx prisma init
+npx prisma create dev
+npx prisma generate
 ```
 
 Now, run the development server:

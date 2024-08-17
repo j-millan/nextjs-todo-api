@@ -1,0 +1,55 @@
+/* cards */
+.complete, .pending {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 10px;
+  padding: 15px;  
+  
+  font-size: 14px;
+  border-radius: 10px;
+}
+
+.complete:hover, .pending:hover {
+}
+
+.complete {
+  background-color: #cbf8f8;
+  border: 2px dotted #5ddbdb;
+  
+}
+
+.pending {
+  background-color: #f9d0d0;
+  border: 2px dotted #ff9393;
+}
+/* cards */
+
+/* description */
+.complete .description {
+  text-decoration: line-through;
+}
+/* description */
+
+/* checkbox */
+.checkbox {
+  min-width: 30px;
+  min-height: 30px;
+
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+
+.checkbox:hover {
+  opacity: 0.6;
+}
+
+.checkbox svg {
+  position: relative;
+  left: 4px;
+  top: 4px;
+
+  font-size: 22px;
+}
+/* checkbox */

@@ -1,0 +1,27 @@
+.button {
+  display: flex;
+  align-items: baseline;
+  
+  height: 45px;
+  padding: 10px 15px;
+  box-sizing: border-box;
+
+  color: var(--text-gray);
+  background-color: rgb(240, 240, 240);
+  border: 1px solid var(--border-gray);
+  border-radius: 10px;
+
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--border-gray)
+}
+
+.button .icon {
+  font-size: 20px;
+}
+
+.button .text {
+  font-size: 16px;
+}

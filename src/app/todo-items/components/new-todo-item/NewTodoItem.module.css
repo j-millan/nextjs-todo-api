@@ -1,0 +1,41 @@
+.form {
+  display: flex;
+  column-gap: 5px;
+}
+
+.form .create, .form .delete {
+  height: 45px;
+  padding: 5px 15px;
+  box-sizing: border-box;
+
+  font-weight: 600;
+  color: white;
+  border: none;
+  border-radius: 5px;
+
+  cursor: pointer;
+}
+
+.form .create {
+  background-color: rgb(54, 168, 210);
+}
+
+.form .create:hover {
+  background-color: rgb(44, 146, 179);
+}
+
+.form .delete {
+  display: flex;
+  column-gap: 5px;
+  align-items: center;
+  
+  background-color: rgb(210, 54, 54);
+}
+
+.form .delete:hover {
+  background-color: rgb(179, 44, 44);
+}
+
+.separator {
+  flex-grow: 1;
+}

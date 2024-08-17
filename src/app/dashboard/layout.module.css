@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.container .content {
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.container .children {
+  padding: 4%;
+}

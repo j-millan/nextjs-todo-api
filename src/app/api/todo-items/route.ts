@@ -1,6 +1,5 @@
 import prisma from "@/lib/prisma";
 import { PaginationEnum } from "@/shared";
-import { TodoItem } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import * as yup from "yup";
 
@@ -54,4 +53,12 @@ export const POST = async (req: NextRequest) => {
       { status: 400, statusText: "Bad Request" }
     );
   }
+};
+
+export const DELETE = async (_req: Request) => {
+  await prisma.todoItem.deleteMany({
+    where: { completed: true },
+  });
+
+  return NextResponse.json({}, { status: 200, statusText: "Success" });
 };

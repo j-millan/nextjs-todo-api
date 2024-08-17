@@ -46,3 +46,13 @@ export const PUT = async (req: Request, { params }: TodoItemsSegments) => {
     );
   }
 };
+
+
+export const DELETE = async (_req: Request, { params }: TodoItemsSegments) => {
+  await prisma.todoItem.deleteMany({
+    where: { id: params.id },
+  });
+
+  return NextResponse.json({}, { status: 200, statusText: "Success" });
+};
+

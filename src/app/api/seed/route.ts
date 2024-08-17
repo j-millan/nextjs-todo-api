@@ -4,18 +4,8 @@ import { NextResponse } from "next/server";
 export const GET = async (req: Request) => {
   await prisma.todoItem.deleteMany();
 
-  const newTodo = await prisma.todoItem.createMany({
-    data: [
-      { description: 'Item 1' },
-      { description: 'Item 2' },
-      { description: 'Item 3' },
-      { description: 'Item 4' },
-      { description: 'Item 5' },
-      { description: 'Item 6' },
-      { description: 'Item 7' },
-      { description: 'Item 8' },
-      { description: 'Item 9' },
-    ],
+  const newTodo = await prisma.todoItem.create({
+    data: { description: "Seed item.", completed: true },
   });
 
   return NextResponse.json({

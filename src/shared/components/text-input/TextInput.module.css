@@ -1,0 +1,27 @@
+.container {
+  position: relative;
+  color: var(--text-dark-gray);
+  height: 45px;
+}
+
+.container.has-icon .input {
+  padding-left: 45px !important;
+}
+
+.input {
+  padding: 10px 15px 10px 15px;
+
+  border: 1px solid var(--border-gray);
+  border-radius: 10px;
+  height: 45px;
+
+  box-shadow: none;
+}
+
+.icon {
+  position: absolute;
+  left: 10px;
+  top: 25%;
+  
+  font-size: 20px;
+}

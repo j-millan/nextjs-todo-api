@@ -1,0 +1,25 @@
+.item {
+  display: flex;
+  column-gap: 20px;
+
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+
+  align-items: middle;
+  color: var(--text-gray);
+  border-radius: 10px;
+}
+
+.item.active {
+  color: white;
+  background: linear-gradient(90deg, #2f8787 0%, #1dd2d2 100%)
+}
+
+.item .icon {
+  font-size: 1.5rem;
+}
+
+.item .title {
+  font-size: 1.2rem;
+}

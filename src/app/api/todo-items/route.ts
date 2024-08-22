@@ -20,6 +20,7 @@ export const GET = async (req: NextRequest) => {
   const todoItems = await prisma.todoItem.findMany({
     skip: offset || PaginationEnum.DEFAULT_OFFSET,
     take: limit || PaginationEnum.DEFAULT_LIMIT,
+    orderBy: { createdAt: "desc" },
   });
 
   const totalCount = await prisma.todoItem.count();

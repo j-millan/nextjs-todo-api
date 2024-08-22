@@ -1,31 +1,32 @@
 "use client";
 
-import { Button, TextInput } from "@/shared";
-import styles from "./NewTodoItem.module.css";
-import { useRouter } from "next/navigation";
-import { createTodo, deleteTodo } from "../../services/todo-items-service";
+import { TextInput } from "@/shared";
 import { FormEvent, useState } from "react";
 import { IoTrashOutline } from "react-icons/io5";
+import { deleteCompletedTodoItems } from "../..";
+import styles from "./NewTodoItem.module.css";
+import { useRouter } from "next/navigation";
 
-export const NewTodoItem = () => {
+export interface NewTodoItemProps {
+  onSubmit: (description: string) => Promise<void>;
+}
+
+export const NewTodoItem = ({ onSubmit }: NewTodoItemProps) => {
   const router = useRouter();
   const [description, setDescription] = useState("");
 
-  const onSubmit = async (e: FormEvent) => {
+  const onFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
-
-    await createTodo({ description });
+    await onSubmit(description);
     setDescription('');
-    router.refresh();
   };
 
   const onDelete = async () => {
-    await deleteTodo();
-    router.refresh();
+    await deleteCompletedTodoItems();
   };
 
   return (
-    <form className={styles.form} onSubmit={onSubmit}>
+    <form className={styles.form} onSubmit={onFormSubmit}>
       <TextInput
         placeholder="What needs to be done?"
         value={description}

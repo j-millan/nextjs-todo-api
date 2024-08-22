@@ -1,29 +1,64 @@
-'use client';
+"use client";
 
 import { useRouter } from "next/navigation";
 import { TodoItem } from "@prisma/client";
 import { TodoItemCard } from "../todo-item-card/TodoItemCard";
-import { updateTodo } from "../..";
-import styles from './TodoItemsGrid.module.css';
-
+import styles from "./TodoItemsGrid.module.css";
+import { toggleTodoItem } from "../../actions/toggle";
+import { createTodoItem, NewTodoItem } from "../..";
+import { startTransition, useOptimistic, useState } from "react";
 
 export interface TodoItemsGridProps {
-  items: TodoItem[];
+  initialTodoItems: TodoItem[];
 }
 
-export const TodoItemsGrid = ({items = []}: TodoItemsGridProps) => {
+const updateOptimisticTodoItems = (
+  items: TodoItem[],
+  description: string,
+): TodoItem[] => {
+  const optimisticItem: TodoItem = {
+    id: crypto.randomUUID(),
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    completed: false,
+    description: description,
+  };
+
+  return [...items, optimisticItem];
+};
+
+export const TodoItemsGrid = ({
+  initialTodoItems: items = [],
+}: TodoItemsGridProps) => {
   const router = useRouter();
   
-  const toggleItem = async (id: string, completed: boolean): Promise<void> => {
-    await updateTodo(id, { completed });
-    router.refresh();
+  const [todoItems, setTodoItems] = useState(items);
+  const [optimisticTodoItems, setOptimisticTodoItems] = useOptimistic(
+    todoItems,
+    updateOptimisticTodoItems
+  );
+
+  const onNewTodoItemSumbit = async (description: string): Promise<void> => {
+    startTransition(() => {
+      setOptimisticTodoItems(description);
+    });
+
+    try {
+      const newTodoItem = await createTodoItem({ description });
+      setTodoItems([...todoItems, newTodoItem]);
+    } catch {
+      router.refresh();
+    }
   };
 
   return (
-    <div className={styles.grid}>
-      {items.map((item) => (
-        <TodoItemCard key={item.id} item={item} toggleItem={toggleItem} />
-      ))}
+    <div className={styles.container}>
+      <NewTodoItem onSubmit={onNewTodoItemSumbit} />
+      <div className={styles.grid}>
+        {optimisticTodoItems.map((item) => (
+          <TodoItemCard key={item.id} item={item} toggleItem={toggleTodoItem} />
+        ))}
+      </div>
     </div>
-  );  
+  );
 };

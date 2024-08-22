@@ -1,17 +1,18 @@
 import { TodoItem } from "@prisma/client";
 
-export interface CreateTodoItem {
-  description?: string;
+export interface CreateTodoItemDto {
+  description: string;
+  compelted?: boolean;
 }
 
-export interface UpdateTodoItem {
+export interface UpdateTodoItemDto {
   description?: string;
   completed?: boolean;
 }
 
 export const updateTodo = async (
   id: string,
-  data: UpdateTodoItem
+  data: UpdateTodoItemDto
 ): Promise<TodoItem> => {
   const url = "/api/todo-items/" + id;
   const request = {
@@ -27,7 +28,7 @@ export const updateTodo = async (
     });
 };
 
-export const createTodo = async (data: CreateTodoItem): Promise<TodoItem> => {
+export const createTodo = async (data: CreateTodoItemDto): Promise<TodoItem> => {
   const url = "/api/todo-items/";
   const request = {
     method: "POST",

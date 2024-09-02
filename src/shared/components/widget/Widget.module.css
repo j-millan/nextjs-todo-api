@@ -1,0 +1,16 @@
+.widget {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+
+  padding: 20px;
+
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid var(--border-gray);
+}
+
+.widget .title {
+  font-weight: 500;
+  font-size: 22px;
+}

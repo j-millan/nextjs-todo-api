@@ -1,6 +1,6 @@
 .button {
   display: flex;
-  align-items: baseline;
+  column-gap: 10px;
   
   height: 45px;
   padding: 10px 15px;

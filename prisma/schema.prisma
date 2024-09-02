@@ -22,3 +22,12 @@ model Employee {
   isAdmin   Boolean  @default(true)
   roles     String[] @default([ "user" ])
 }
+
+model Product {
+  id          String   @id @default(uuid())
+  name        String   @db.VarChar(100)
+  price       Int
+  image       String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

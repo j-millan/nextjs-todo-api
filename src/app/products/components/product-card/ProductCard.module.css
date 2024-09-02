@@ -1,0 +1,68 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  padding: 5px 5px 10px 5px;
+
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid var(--border-gray);
+}
+
+.card .image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  
+  border-radius: 7px;
+  border: 1px solid var(--border-gray);
+}
+
+.card .details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  row-gap: 5px;
+
+  height: 100%;
+  padding: 0 10px;
+}
+
+.card .details .description {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.card .details .footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card .details .footer .price {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.card .details .footer .buttons {
+  display: flex;
+  column-gap: 5px;
+}
+
+.card .details .footer .buttons > button {
+  padding: 5px 10px;
+  
+  color: white;
+  border: none;
+  border-radius: 5px;
+  align-items: baseline;
+
+  cursor: pointer;
+}
+
+.card .details .footer .buttons .add-button {
+  background-color: #3b9bdb;
+}
+
+.card .details .footer .buttons .remove-button {
+  background-color: #e43939;
+}

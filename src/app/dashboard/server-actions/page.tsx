@@ -9,7 +9,6 @@ const ServerActionsPage = async () => {
   const todoItems = await prisma.todoItem.findMany({
     orderBy: { createdAt: 'asc' },
   });
-  console.debug("lol");
 
   return (
     <div className={styles.container}>

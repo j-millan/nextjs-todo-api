@@ -7,3 +7,5 @@ export * from './components/sidebar-item/SidebarItem';
 export * from './components/topbar/Topbar';
 export * from './components/button/Button';
 export * from './components/text-input/TextInput';
+export * from './components/tab-bar/TabBar'
+export * from './components/widget/Widget';

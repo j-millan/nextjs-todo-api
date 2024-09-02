@@ -5,8 +5,10 @@ import styles from './Sidebar.module.css';
 import { CiLogout } from 'react-icons/ci';
 import { SidebarItem, SidebarItemProps } from '../sidebar-item/SidebarItem';
 import { RxDashboard } from 'react-icons/rx';
-import { LuServerCrash } from 'react-icons/lu';
+import { LuCookie, LuServerCrash } from 'react-icons/lu';
 import { IoMdCheckboxOutline } from 'react-icons/io';
+import { FiShoppingCart } from 'react-icons/fi';
+import { BsShop } from 'react-icons/bs';
 
 const items: SidebarItemProps[] = [
   {
@@ -24,6 +26,16 @@ const items: SidebarItemProps[] = [
     icon: <LuServerCrash />,
     route: "/dashboard/server-actions",
   },
+  {
+    title: "Cookies",
+    icon: <LuCookie />,
+    route: "/dashboard/cookies",
+  },
+  {
+    title: "Products",
+    icon: <BsShop />,
+    route: "/dashboard/products",
+  },
 ];
 
 export const Sidebar = () => {
@@ -38,7 +50,7 @@ export const Sidebar = () => {
 
       <div className={styles.user}>
         <Image
-          src="/image/professional-profile-picture.jpg"
+          src="/images/professional-profile-picture.jpg"
           alt="User's profile picture"
           width={130}
           height={130}

@@ -1,4 +1,4 @@
-const DashboardPage = () => {
+const DashboardPage = async () => {
   return (
     <>
       <h1>Dashboard page</h1>

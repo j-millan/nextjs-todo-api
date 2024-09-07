@@ -1,4 +1,4 @@
-import { FaReact } from 'react-icons/fa';
+import { FaReact, FaRegUser } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './Sidebar.module.css';
@@ -7,10 +7,15 @@ import { SidebarItem, SidebarItemProps } from '../sidebar-item/SidebarItem';
 import { RxDashboard } from 'react-icons/rx';
 import { LuCookie, LuServerCrash } from 'react-icons/lu';
 import { IoMdCheckboxOutline } from 'react-icons/io';
-import { FiShoppingCart } from 'react-icons/fi';
 import { BsShop } from 'react-icons/bs';
+import { auth } from '@/auth';
 
 const items: SidebarItemProps[] = [
+  {
+    title: "User Profile",
+    icon: <FaRegUser />,
+    route: "/dashboard/user-profile",
+  },
   {
     title: "Dashboard",
     icon: <RxDashboard />,
@@ -38,7 +43,15 @@ const items: SidebarItemProps[] = [
   },
 ];
 
-export const Sidebar = () => {
+export const Sidebar = async () => {
+  const session = await auth();
+
+  const avatarUrl =
+    session?.user?.image ?? "/images/professional-profile-picture.jpg";
+  const username = session?.user?.name ?? 'Unauthenticated';
+  const roles =
+    session?.user?.roles?.join(', ');
+  
   return (
     <div className={styles.sidebar}>
       <span className={styles.title}>
@@ -50,13 +63,13 @@ export const Sidebar = () => {
 
       <div className={styles.user}>
         <Image
-          src="/images/professional-profile-picture.jpg"
+          src={avatarUrl}
           alt="User's profile picture"
-          width={130}
-          height={130}
+          width={100}
+          height={100}
         ></Image>
-        <span className={styles.name}>John Doe</span>
-        <span className={styles.role}>Admin</span>
+        <span className={styles.name}>{username}</span>
+        <span className={styles.role}>{roles}</span>
       </div>
 
       <div className={styles.separator}></div>
@@ -70,7 +83,7 @@ export const Sidebar = () => {
       </div>
 
       <div className={styles.logout}>
-        <Link href="">
+        <Link href="/api/auth/signout">
           <CiLogout />
           <span>Logout</span>
         </Link>

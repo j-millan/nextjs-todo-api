@@ -3,10 +3,10 @@ import { AiOutlineMessage } from "react-icons/ai";
 import { CiSearch } from "react-icons/ci";
 import { TextInput } from "../text-input/TextInput";
 import { LuShoppingBasket } from "react-icons/lu";
-import { cookies } from "next/headers";
 import { Button } from "../button/Button";
 import { cookieShoppingCart } from "@/app/shopping-cart";
 import styles from "./Topbar.module.css";
+import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 
 const shoppingBasketIcon = <LuShoppingBasket />;
 const messagesIcon = <AiOutlineMessage />;
@@ -15,8 +15,12 @@ const searchInpuConfig = {
   icon: <CiSearch />,
 };
 
-export const Topbar = () => {
-  const cookieStore = cookies();
+
+export interface TopbarProps {
+  cookieStore: ReadonlyRequestCookies;
+}
+
+export const Topbar = ({ cookieStore }: TopbarProps) => {
   const shoppingCart: cookieShoppingCart = JSON.parse(
     cookieStore.get("shopping-cart")?.value || "{}"
   );

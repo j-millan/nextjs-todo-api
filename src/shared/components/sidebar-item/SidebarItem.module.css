@@ -2,7 +2,7 @@
   display: flex;
   column-gap: 20px;
 
-  padding: 20px;
+  padding: 10px;
   width: 100%;
   box-sizing: border-box;
 
@@ -17,9 +17,9 @@
 }
 
 .item .icon {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .item .title {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }

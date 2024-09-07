@@ -14,10 +14,11 @@ export interface TodoItemsGridProps {
 
 const updateOptimisticTodoItems = (
   items: TodoItem[],
-  description: string,
+  description: string
 ): TodoItem[] => {
   const optimisticItem: TodoItem = {
     id: crypto.randomUUID(),
+    userId: "",
     createdAt: new Date(),
     updatedAt: new Date(),
     completed: false,
@@ -27,11 +28,12 @@ const updateOptimisticTodoItems = (
   return [...items, optimisticItem];
 };
 
+
 export const TodoItemsGrid = ({
   initialTodoItems: items = [],
 }: TodoItemsGridProps) => {
   const router = useRouter();
-  
+
   const [todoItems, setTodoItems] = useState(items);
   const [optimisticTodoItems, setOptimisticTodoItems] = useOptimistic(
     todoItems,
@@ -44,7 +46,9 @@ export const TodoItemsGrid = ({
     });
 
     try {
-      const newTodoItem = await createTodoItem({ description });
+      const newTodoItem = await createTodoItem({
+        description,
+      });
       setTodoItems([...todoItems, newTodoItem]);
     } catch {
       router.refresh();
